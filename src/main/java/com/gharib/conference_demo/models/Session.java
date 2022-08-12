@@ -1,6 +1,7 @@
 package com.gharib.conference_demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,9 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.Valid;
 
-@Entity(name = "sessions")
-public class session {
+import org.springframework.beans.factory.annotation.Value;
+
+@Entity(name = "Sessions")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long session_id;
@@ -28,7 +33,16 @@ public class session {
     )
     private List<Speaker> speakers;
 
-    public session() {
+
+    public Session() {
+    }
+
+    public List<Speaker> getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(List<Speaker> speakers) {
+        this.speakers = speakers;
     }
 
     public Long getSession_id() {

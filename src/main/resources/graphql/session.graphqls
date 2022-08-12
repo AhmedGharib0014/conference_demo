@@ -1,0 +1,22 @@
+type Session{
+    session_id:ID!,
+    session_name:String!,
+    session_description:String!,
+    session_length:Int!,
+}
+
+
+
+type  Query{
+    findAllSessions:[Session]!,
+    findById(id:ID!):Session!
+}
+
+
+type  Mutation {
+    newSession(session_id:ID!,
+        session_name:String!,
+        session_description:String!,
+        session_length:Int!,):Session!,
+    deleteSession(id:ID!):Boolean
+}
