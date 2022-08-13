@@ -26,6 +26,7 @@ public class SessionController {
 
     @GetMapping
     public List<Session> list(){
+
         return  sessionRepository.findAll();
     }
 

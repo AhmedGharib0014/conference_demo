@@ -3,9 +3,12 @@ package com.gharib.conference_demo.controllers;
 import com.gharib.conference_demo.models.Speaker;
 import com.gharib.conference_demo.repositories.SpeakerRepository;
 import java.util.List;
+import jdk.jshell.Snippet;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +24,9 @@ public class SpeakerController {
     private SpeakerRepository speakerRepository;
 
     @GetMapping
-    public List<Speaker> list(){
-        return  speakerRepository.findAll();
+    public ResponseEntity<List<Speaker>> list(){
+
+        return ResponseEntity.status(HttpStatus.OK).body(speakerRepository.findAll()) ;
     }
 
     @GetMapping
